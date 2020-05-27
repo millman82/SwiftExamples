@@ -15,6 +15,11 @@ struct Clamping<Value: Comparable> {
         get { value }
         set { value = min(max(range.lowerBound, newValue), range.upperBound) }
     }
+    
+    // Optionally implement property projectedValue to get the wrapper itself
+    var projectedValue: Clamping<Value> {
+        get { return self }
+    }
 }
 
 struct Solution {
@@ -24,3 +29,5 @@ struct Solution {
 var solution = Solution(pH: 7.0)
 solution.pH = -1
 print(solution.pH)
+// Access the wrapper property
+print(solution.$pH)
